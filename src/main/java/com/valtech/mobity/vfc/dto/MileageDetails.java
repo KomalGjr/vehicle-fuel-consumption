@@ -7,7 +7,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotificationResponseDto {
-    private String notificationMessage;
+public class MileageDetails {
+
+    private String vehicleId;
+
+    private String userId;
+
+    private Float currentMileage;
 
 }

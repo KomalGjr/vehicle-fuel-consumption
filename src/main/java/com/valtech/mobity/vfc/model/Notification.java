@@ -22,8 +22,6 @@ public class Notification {
 
     private String notificationMessage;
 
-    private String status;//open,closed
-
     private long userId;
 
     private String vehicleId;

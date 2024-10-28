@@ -21,7 +21,7 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
-    private String email;
+    private String name;
 
     private long vehicleId;
 }
