@@ -1,10 +1,7 @@
 package com.valtech.mobity.vfc.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "efficiency_target")
 public class EfficiencyTarget {
 
     @Id
@@ -23,9 +21,10 @@ public class EfficiencyTarget {
 
     private Double efficientTargetValue;
 
-    private String status;
+    @Enumerated(EnumType.STRING) // Store as a string in the database
+    private EfficiencyTargetStatus status;
 
-    private String userId;
+    private long userId;
 
-    private String vehicleId;
+    private long vehicleId;
 }

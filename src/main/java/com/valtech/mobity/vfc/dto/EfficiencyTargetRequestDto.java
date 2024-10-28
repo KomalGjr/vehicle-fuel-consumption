@@ -11,9 +11,9 @@ public class EfficiencyTargetRequestDto {
 
     private Double efficientTargetValue;
 
-    private String status;
+    private int status;
 
-    private String userId;
+    private long userId;
 
-    private String vehicleId;
+    private long vehicleId;
 }

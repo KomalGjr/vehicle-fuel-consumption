@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotificationResponseDto {
-    private String notificationMessage;
+    private boolean isExceed;
 
 }

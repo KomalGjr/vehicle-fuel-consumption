@@ -1,9 +1,6 @@
 package com.valtech.mobity.vfc.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "notifications")
 public class Notification {
 
     @Id
@@ -24,5 +22,5 @@ public class Notification {
 
     private long userId;
 
-    private String vehicleId;
+    private long vehicleId;
 }

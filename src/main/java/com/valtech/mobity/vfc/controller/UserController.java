@@ -50,4 +50,10 @@ public class UserController {
         List<Users> users = userService.getAllUsers();
         return ResponseEntity.ok(users);
     }
+
+    @GetMapping("/vehicle/{vehicleId}")
+    public ResponseEntity<List<Users>> getUsersByVehicleId(@PathVariable Long vehicleId) {
+        List<Users> users = userService.getUsersByVehicleId(vehicleId);
+        return ResponseEntity.ok(users);
+    }
 }

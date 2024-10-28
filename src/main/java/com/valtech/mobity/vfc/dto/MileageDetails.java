@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MileageDetails {
 
-    private String vehicleId;
+    private long vehicleId;
 
-    private String userId;
+    private long userId;
 
-    private Float currentMileage;
+    private Double currentMileage;
 
 }

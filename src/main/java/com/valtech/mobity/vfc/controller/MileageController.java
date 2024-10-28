@@ -1,8 +1,9 @@
 package com.valtech.mobity.vfc.controller;
 
-import com.valtech.mobity.vfc.dto.EfficiencyTargetRequestDto;
-import com.valtech.mobity.vfc.dto.EfficiencyTargetResponseDto;
 import com.valtech.mobity.vfc.dto.MileageDetails;
+import com.valtech.mobity.vfc.dto.NotificationResponseDto;
+import com.valtech.mobity.vfc.service.MileageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,19 +12,12 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(originPatterns = "*")
 public class MileageController {
 
-    @PostMapping("/efficiencyTarget")
-    public EfficiencyTargetResponseDto setEfficiencyTarget(@RequestBody EfficiencyTargetRequestDto dto) {
-        // save target in db
-        return new EfficiencyTargetResponseDto();
-
-    }
+    @Autowired
+    private MileageService mileageService;
 
     @PostMapping("/mileage")
-    public ResponseEntity<Object> setMileage(@RequestBody MileageDetails milageDetails) {
-        // update mileage in db
-
-        // update notification table if needed
-
-        return ResponseEntity.accepted().build();
+    public ResponseEntity<NotificationResponseDto> setMileage(@RequestBody MileageDetails mileageDetails) {
+        NotificationResponseDto notificationResponseDto = mileageService.setMileage(mileageDetails);
+        return ResponseEntity.ok(notificationResponseDto);
     }
 }
