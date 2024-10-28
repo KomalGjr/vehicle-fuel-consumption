@@ -1,9 +1,6 @@
 package com.valtech.mobity.vfc.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 @Entity
+@Table(name = "vehicle_details")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,7 +20,9 @@ public class VehicleDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long vehicleId;
 
+    private String manufacturer;
+
     private String model;
 
-    private Set<EfficiencyTarget> efficiencyTargets;
+//    private Set<EfficiencyTarget> efficiencyTargets;
 }

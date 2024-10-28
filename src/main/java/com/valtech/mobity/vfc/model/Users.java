@@ -1,10 +1,7 @@
 package com.valtech.mobity.vfc.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "users")
 public class Users {
 
     @Id
@@ -23,5 +21,7 @@ public class Users {
 
     private String name;
 
-    private long vehicleId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "vehicle_id", referencedColumnName = "vehicleId")
+    private VehicleDetails vehicleDetails;
 }
