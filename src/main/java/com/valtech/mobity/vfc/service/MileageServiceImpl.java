@@ -27,18 +27,17 @@ public class MileageServiceImpl implements MileageService{
         EfficiencyTarget efficiencyTarget = efficiencyTargetRepository.findByUserIdAndVehicleIdAndStatus(mileageDetails.getUserId(),mileageDetails.getVehicleId(), EfficiencyTargetStatus.ACTIVE).get(0);
         if(mileageDetails.getCurrentMileage() > efficiencyTarget.getEfficientTargetValue()){
             Notification notification = Notification.builder()
-                    .notificationMessage("The mileage speed has exceeded the set target.")
+                    .notificationMessage("The mileage speed has exceeded the set efficient target: "+ efficiencyTarget.getEfficientTargetValue())
                     .vehicleId(mileageDetails.getVehicleId())
                     .userId(mileageDetails.getUserId())
                     .build();
-            notificationResponseDto.setExceed(true);
+            notificationResponseDto.setMessage(notification.getNotificationMessage());
             notificationRepository.save(notification);
         }else{
             List<Notification> notifications = notificationRepository.findByUserIdAndVehicleId(mileageDetails.getUserId(),mileageDetails.getVehicleId());
             if(!notifications.isEmpty()){
                 notificationRepository.deleteByUserIdAndVehicleId(mileageDetails.getUserId(),mileageDetails.getVehicleId());
             }
-            notificationResponseDto.setExceed(false);
         }
         return notificationResponseDto;
     }
