@@ -29,7 +29,7 @@ public class MileageServiceImpl implements MileageService {
         EfficiencyTarget efficiencyTarget = efficiencyTargetRepository.findByUserIdAndVehicleIdAndStatus(mileageDetails.getUserId(), mileageDetails.getVehicleId(), EfficiencyTargetStatus.ACTIVE).get(0);
         if (mileageDetails.getCurrentMileage() > efficiencyTarget.getEfficientTargetValue()) {
             Notification notification = Notification.builder()
-                    .notificationMessage("The current mileage " + mileageDetails.getCurrentMileage() + " has exceeded the set efficient target: " + efficiencyTarget.getEfficientTargetValue())
+                    .notificationMessage("Goal Achieved! Target Mileage:" + efficiencyTarget.getEfficientTargetValue() + " Current Mileage: " + mileageDetails.getCurrentMileage())
                     .vehicleId(mileageDetails.getVehicleId())
                     .userId(mileageDetails.getUserId())
                     .build();
