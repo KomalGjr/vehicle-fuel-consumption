@@ -7,13 +7,14 @@ import com.valtech.mobity.vfc.model.EfficiencyTargetStatus;
 import com.valtech.mobity.vfc.model.Notification;
 import com.valtech.mobity.vfc.repository.EfficiencyTargetRepository;
 import com.valtech.mobity.vfc.repository.NotificationRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MileageServiceImpl implements MileageService{
+public class MileageServiceImpl implements MileageService {
 
     @Autowired
     private EfficiencyTargetRepository efficiencyTargetRepository;
@@ -22,21 +23,22 @@ public class MileageServiceImpl implements MileageService{
     private NotificationRepository notificationRepository;
 
     @Override
+    @Transactional
     public NotificationResponseDto setMileage(MileageDetails mileageDetails) {
-        NotificationResponseDto notificationResponseDto =  new NotificationResponseDto();
-        EfficiencyTarget efficiencyTarget = efficiencyTargetRepository.findByUserIdAndVehicleIdAndStatus(mileageDetails.getUserId(),mileageDetails.getVehicleId(), EfficiencyTargetStatus.ACTIVE).get(0);
-        if(mileageDetails.getCurrentMileage() > efficiencyTarget.getEfficientTargetValue()){
+        NotificationResponseDto notificationResponseDto = new NotificationResponseDto();
+        EfficiencyTarget efficiencyTarget = efficiencyTargetRepository.findByUserIdAndVehicleIdAndStatus(mileageDetails.getUserId(), mileageDetails.getVehicleId(), EfficiencyTargetStatus.ACTIVE).get(0);
+        if (mileageDetails.getCurrentMileage() > efficiencyTarget.getEfficientTargetValue()) {
             Notification notification = Notification.builder()
-                    .notificationMessage("The mileage speed has exceeded the set efficient target: "+ efficiencyTarget.getEfficientTargetValue())
+                    .notificationMessage("The current mileage " + mileageDetails.getCurrentMileage() + " has exceeded the set efficient target: " + efficiencyTarget.getEfficientTargetValue())
                     .vehicleId(mileageDetails.getVehicleId())
                     .userId(mileageDetails.getUserId())
                     .build();
             notificationResponseDto.setMessage(notification.getNotificationMessage());
             notificationRepository.save(notification);
-        }else{
-            List<Notification> notifications = notificationRepository.findByUserIdAndVehicleId(mileageDetails.getUserId(),mileageDetails.getVehicleId());
-            if(!notifications.isEmpty()){
-                notificationRepository.deleteByUserIdAndVehicleId(mileageDetails.getUserId(),mileageDetails.getVehicleId());
+        } else {
+            List<Notification> notifications = notificationRepository.findByUserIdAndVehicleId(mileageDetails.getUserId(), mileageDetails.getVehicleId());
+            if (!notifications.isEmpty()) {
+                notificationRepository.deleteByUserIdAndVehicleId(mileageDetails.getUserId(), mileageDetails.getVehicleId());
             }
         }
         return notificationResponseDto;
