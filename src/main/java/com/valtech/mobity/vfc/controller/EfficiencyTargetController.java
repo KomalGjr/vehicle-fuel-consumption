@@ -22,6 +22,12 @@ public class EfficiencyTargetController {
         return ResponseEntity.ok(savedTarget);
     }
 
+    @PutMapping
+    public ResponseEntity<EfficiencyTarget> updateEfficiencyTarget(@RequestBody EfficiencyTargetRequestDto requestDto) {
+        EfficiencyTarget savedTarget = efficiencyTargetService.updateEfficiencyTarget(requestDto);
+        return ResponseEntity.ok(savedTarget);
+    }
+
     // Get API based on userId and vehicleId
     @GetMapping("/user/{userId}/vehicle/{vehicleId}")
     public ResponseEntity<EfficiencyTarget> getEfficiencyTargetsByUserIdAndVehicleId(

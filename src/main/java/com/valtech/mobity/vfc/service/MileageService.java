@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface MileageService {
     NotificationResponseDto setMileage(MileageDetailsRequestDto mileageDetails);
+
     List<MileageDetails> getMileageByVehicleIdAndUserId(long vehicleId, long userId);
+
     Double getAverageMileage(Long userId, Long vehicleId);
 }

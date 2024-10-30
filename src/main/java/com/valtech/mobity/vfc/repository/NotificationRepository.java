@@ -10,5 +10,6 @@ import java.util.List;
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 
     List<Notification> findByUserIdAndVehicleId(Long userId, long vehicleId);
+
     void deleteByUserIdAndVehicleId(Long userId, long vehicleId);
 }

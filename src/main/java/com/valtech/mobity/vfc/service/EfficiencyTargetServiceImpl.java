@@ -40,6 +40,24 @@ public class EfficiencyTargetServiceImpl implements EfficiencyTargetService {
     }
 
     @Override
+    public EfficiencyTarget updateEfficiencyTarget(EfficiencyTargetRequestDto requestDto) {
+        List<EfficiencyTarget> existingTargets = efficiencyTargetRepository
+                .findByUserIdAndVehicleIdAndStatus(
+                        requestDto.getUserId(),
+                        requestDto.getVehicleId(),
+                        EfficiencyTargetStatus.ACTIVE
+                );
+
+        if (!existingTargets.isEmpty() && requestDto.getStatus() == 1) {
+            EfficiencyTarget efficiencyTarget = existingTargets.get(0);
+            efficiencyTarget.setEfficientTargetValue(requestDto.getEfficientTargetValue());
+            efficiencyTarget.setStatus(EfficiencyTargetStatus.fromValue(requestDto.getStatus()));
+            return efficiencyTargetRepository.save(efficiencyTarget);
+        }
+        return new EfficiencyTarget();
+    }
+
+    @Override
     public Optional<EfficiencyTarget> getEfficiencyTargetById(Long id) {
         return efficiencyTargetRepository.findById(id);
     }

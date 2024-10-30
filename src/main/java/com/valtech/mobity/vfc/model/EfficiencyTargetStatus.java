@@ -10,10 +10,6 @@ public enum EfficiencyTargetStatus {
         this.value = value;
     }
 
-    public int getValue() {
-        return value;
-    }
-
     public static EfficiencyTargetStatus fromValue(int value) {
         for (EfficiencyTargetStatus status : EfficiencyTargetStatus.values()) {
             if (status.getValue() == value) {
@@ -21,5 +17,9 @@ public enum EfficiencyTargetStatus {
             }
         }
         throw new IllegalArgumentException("Invalid status value: " + value);
+    }
+
+    public int getValue() {
+        return value;
     }
 }

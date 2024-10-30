@@ -22,14 +22,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users saveUser(UserRequestDto userRequestDto) {
-        Optional<VehicleDetails> vehicleDetails= vehicleDetailsRepository.findById(userRequestDto.getVehicleId());
-        if(vehicleDetails.isPresent()) {
+        Optional<VehicleDetails> vehicleDetails = vehicleDetailsRepository.findById(userRequestDto.getVehicleId());
+        if (vehicleDetails.isPresent()) {
             Users user = Users.builder()
                     .name(userRequestDto.getName())
                     .vehicleDetails(vehicleDetails.get())
                     .build();
             return usersRepository.save(user);
-        }else{
+        } else {
             return null;
         }
     }

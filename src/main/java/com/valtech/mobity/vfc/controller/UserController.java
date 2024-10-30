@@ -17,15 +17,15 @@ import java.util.Map;
 @CrossOrigin(originPatterns = "*")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-
     private static final Map<Integer, List<UserResponseDto>> VEHICLE_USERS_MAPPING = new HashMap<>();
 
     static {
         VEHICLE_USERS_MAPPING.put(1, List.of(new UserResponseDto(1, "John"), new UserResponseDto(2, "George")));
         VEHICLE_USERS_MAPPING.put(2, List.of(new UserResponseDto(3, "Paul"), new UserResponseDto(4, "Ringo")));
     }
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/test")
     public List<UserResponseDto> getUsersForVehicle(@RequestParam(name = "vehicleId") Integer vehicleId) {

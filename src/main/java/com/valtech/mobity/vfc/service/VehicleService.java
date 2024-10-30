@@ -8,8 +8,10 @@ import java.util.Optional;
 
 public interface VehicleService {
 
-    public VehicleDetails saveVehicle(VehicleDetailsRequestDto vehicleDetailsRequestDto);
-    public Optional<VehicleDetails> getVehicleById(Long vehicleId);
-    public List<VehicleDetails> getAllVehicles();
+    VehicleDetails saveVehicle(VehicleDetailsRequestDto vehicleDetailsRequestDto);
+
+    Optional<VehicleDetails> getVehicleById(Long vehicleId);
+
+    List<VehicleDetails> getAllVehicles();
 
 }
