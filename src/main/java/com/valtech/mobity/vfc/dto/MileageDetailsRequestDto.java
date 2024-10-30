@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class MileageDetails {
+public class MileageDetailsRequestDto {
 
     private long vehicleId;
 

@@ -6,22 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
-
 @Entity
-@Table(name = "vehicle_details")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class VehicleDetails {
+@Table(name = "mileage_details")
+public class MileageDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long vehicleId;
+    private Long mileageId;
 
-    private String manufacturer;
+    private Double mileageRange;
 
-    private String model;
+    private long userId;
 
+    private long vehicleId;
 }
